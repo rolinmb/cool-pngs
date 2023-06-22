@@ -43,13 +43,13 @@ document.getElementById("gen-button").addEventListener("click", () => {
 		alert("Please enter a number for warp scaling greater than 0 and less than or equal to 500.");
 		return;
 	}
-	var warp_tessalate = document.getElementById("tessalate-input").value;
-	if (warp_tessalate <= 0) {
-		alert("Please enter a number for warp tessalation greater than 0 and less than or equal to 500.");
+	var warp_tessellate = document.getElementById("tessellate-input").value;
+	if (warp_tessellate <= 0) {
+		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 500.");
 		return;
 	}
-	if (warp_tessalate > 500) {
-		alert("Please enter a number for warp tessalation greater than 0 and less than or equal to 500.");
+	if (warp_tessellate > 500) {
+		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 500.");
 		return;
 	}
 	// Generate the trippy grid pattern
@@ -83,8 +83,8 @@ document.getElementById("gen-button").addEventListener("click", () => {
 	var data = imageData.data;
 	for (let x = 0; x < canvas.width; x++) {
 		for (let y = 0; y < canvas.height; y++) {
-		    let offsetX = Math.sin(y / warp_tessalate) * warp_scale;
-			let offsetY = Math.sin(x / warp_tessalate) * warp_scale;
+		    let offsetX = Math.sin(y / warp_tessellate) * warp_scale;
+			let offsetY = Math.sin(x / warp_tessellate) * warp_scale;
 			let sourceX = x + offsetX;
 			var sourceY = y + offsetY;
 			if (sourceX >= 0 && sourceX < canvas.width && sourceY >= 0 && sourceY < canvas.height) {
@@ -100,7 +100,7 @@ document.getElementById("gen-button").addEventListener("click", () => {
 	context.putImageData(imageData, 0, 0);
 	var previewImg = document.getElementById("png-preview");
 	previewImg.src = canvas.toDataURL("image/png");
-	previewImg.style.display = "block";
+	previewImg.style.display = "flex";
 	var downloadLink = document.getElementById("download-link");
 	downloadLink.href = canvas.toDataURL("image/png");
 	downloadLink.download = "canvas.png"
