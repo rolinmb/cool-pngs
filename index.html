@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>.png generator</title>
+  </head>
+  <body>
+	<button id="gen-button">Generate</button>
+	<script type="text/javascript">
+	  document.getElementById("gen-button").addEventListener("click", () => {
+		var canvas = document.createElement("canvas");
+		canvas.width = 1500;
+		canvas.height = 1500;
+		var context = canvas.getContext("2d");
+		var frequency = 2; // Controls the frequency of the grid pattern
+		var amplitude = 200; // Controls the amplitude/saturation of the grid pattern
+		// Generate the trippy grid pattern
+		for (let x = 0; x < canvas.width; x++) {
+          for (let y = 0; y < canvas.height; y++) {
+			let r = Math.sin(x * frequency) * amplitude;
+			let g = Math.sin(y * frequency) * amplitude;
+			let b = Math.sin((x + y)  * frequency) * amplitude;
+			let color = 'rgb(' + Math.floor(r) + ', ' + Math.floor(g) + ', ' + Math.floor(b) + ')';
+            context.fillStyle = color;
+            context.fillRect(x, y, 1, 1);
+		  }
+		}
+		// Add fractal circles
+        context.globalCompositeOperation = 'screen';
+        for (let i = 0; i < 100; i++) {
+		  let startX = Math.random() * canvas.width;
+		  let startY = Math.random() * canvas.height;
+		  let radius = Math.random() * 100 + 50;
+		  context.beginPath()
+		  context.arc(startX, startY, radius, 0, Math.PI*2, false)
+		  let r = (Math.random() * 255);
+		  let g = (Math.random() * 255);
+		  let b = (Math.random() * 255);
+		  let color = 'rgb(' + Math.floor(r) + ', ' + Math.floor(g) + ', ' + Math.floor(b) + ')';
+		  context.fillStyle = color;
+		  context.fill();
+		}
+		// Apply warping
+		var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+		var data = imageData.data;
+		for (let x = 0; x < canvas.width; x++) {
+		  for (let y = 0; y < canvas.height; y++) {
+		    let offsetX = Math.sin(y / 6.25) * 20; // Adjust intensity of warping scaling
+			let offsetY = Math.sin(x / 6.25) * 20;
+			let sourceX = x + offsetX;
+			var sourceY = y + offsetY;
+			if (sourceX >= 0 && sourceX < canvas.width && sourceY >= 0 && sourceY < canvas.height) {
+				let destIndex = (y *  canvas.width + x) * 4;
+				let sourceIndex = (Math.floor(sourceY) * canvas.width + Math.floor(sourceX)) * 4;
+				data[destIndex] = data[sourceIndex]; // R
+				data[destIndex + 1] = data[sourceIndex + 1]; // G
+				data[destIndex + 2] = data[sourceIndex + 2]; // B
+				data[destIndex + 3] = data[sourceIndex + 3]; // A
+			}
+		  }
+		}
+		context.putImageData(imageData, 0, 0);
+		var dataURL = canvas.toDataURL("image/png");
+		var link = document.createElement("a");
+		link.href = dataURL;
+		link.download = "canvas.png"
+		link.click();
+	  });
+    </script>
+  </body>
+</html>
