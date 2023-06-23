@@ -105,4 +105,5 @@ document.getElementById("gen-button").addEventListener("click", () => {
 	downloadLink.href = canvas.toDataURL("image/png");
 	downloadLink.download = "canvas.png"
 	downloadLink.style.display = "block";
+	downloadLink.style.color = "white";
 });
