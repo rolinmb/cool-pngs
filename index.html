@@ -5,30 +5,43 @@
     <title>.png generator</title>
   </head>
   <body>
-    <div id="entry-submit-area" style="text-align: center; padding: 20px;">
+    <div id="header-area">
 	  <h1><b>| .png generator |</b></h1>
 	  <h2><i>By Rolin Blake</i></h2>
-	  <h4><i>Grid Pattern Frequency</i></h4>
-	  <p><i>(enter a number in the range range (0, 500])</i></p>
+	</div>
+    <div id="entry-submit-area">
+	  <div class="input-explanation">
+	    <h3><i>Grid Pattern Frequency</i></h3>
+		<p><i>enter a number in the range range (0, 500]</i></p>
+	  </div>
 	  <input id="frequency-input" type="number" min="0.0001" placeholder="2" />
-	  <h4><i>Grid Pattern Amplitude<i></h4>
-	  <p><i>(enter a number in the range range (0, 500])</i></p>
+	  <div class="input-explanation">
+	    <h3><i>Grid Pattern Amplitude</i></h3>
+	    <p><i>enter a number in the range range (0, 500])</i></p>
+	  </div>
 	  <input id="amplitude-input" type="number" min="0.0001" placeholder="200" />
-	  <h4><i>Circle Generation Iterations</i></h4>
-	  <p><i>(enter an integer in the inclusive range [1, 500])</i></p>
+	  <div class="input-explanation">
+		<h3><i>Circle Generation Iterations</i></h3>
+	    <p><i>enter an integer in the inclusive range [1, 500]</i></p>
+	  </div>
 	  <input id="circle-input" type="number" min="0.0001" max="500" placeholder="100" />
-	  <h4><i>Warp Scaling</i></h4>
-      <p><i>(enter a number in the range (0, 500])</i></p>
-      <input id="warp-input" type="number" min="0.0001" max="500" placeholder="10" />
-      <h4><i>Warp Tessellation</i></h4>
-      <p><i>(enter a number in the range (0, 500])</i></p>
-      <input id="tessellate-input" type="number" min="0.0001" max="500" placeholder="50" />
+	  <div class="input-explanation">
+   	    <h3><i>Warp Scaling</i></h3>
+        <p><i>enter a number in the range (0, 500]</i></p>
+      </div>
+	  <input id="warp-input" type="number" min="0.0001" max="500" placeholder="10" />
+	  <div class="input-explanation">
+        <h3><i>Warp Tessellation</i></h3>
+        <p><i>enter a number in the range (0, 500]</i></p>
+      </div>
+	  <input id="tessellate-input" type="number" min="0.0001" max="500" placeholder="50" />
 	  <br /><br />
-      <button id="gen-button">Generate</button>
+      <button id="gen-button">Generate .png preview</button>
 	  <br /><br />
 	  <a id="download-link" style="display: none;">Download this .png</a>
 	</div>
-	<div id="png-preview-area" style="display: flex; flex-wrap: wrap; justify-content: center;">
+	<br /><br />
+	<div id="png-preview-area">
 	  <img id="png-preview" style="display: none;" />
 	</div>
 	<script type="text/javascript" src="index.js"></script>
