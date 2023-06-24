@@ -17,11 +17,11 @@ document.getElementById("gen-button").addEventListener("click", () => {
 	var context = canvas.getContext("2d");
 	var frequency = document.getElementById("frequency-text-input").value;
 	if (frequency <= 0) {
-		alert("Please enter a number for frequency greater than 0 and less than or equal to 500.");
+		alert("Please enter a number for frequency greater than 0 and less than or equal to 1000.");
 		return;
 	}
-	if (frequency > 500) {
-		alert("Please enter a number for frequency greater than 0 and less than or equal to 500.");
+	if (frequency > 1000) {
+		alert("Please enter a number for frequency greater than 0 and less than or equal to 1000.");
 		return;
 	}
 	var amplitude = document.getElementById("amplitude-text-input").value;
@@ -29,13 +29,13 @@ document.getElementById("gen-button").addEventListener("click", () => {
 		alert("Please enter an amplitude greater than 0.");
 		return;
 	}
-	if (amplitude > 500) {
-		alert("Please enter a number for amplitude greater than 0 and less than or equal to 500.");
+	if (amplitude > 1000) {
+		alert("Please enter a number for amplitude greater than 0 and less than or equal to 1000.");
 		return;
 	}
 	var circle_num = document.getElementById("circle-text-input").value;
 	if (circle_num < 0) {
-		alert("Please enter a positive integer for cirlce iterations greater than or equal to 1 and less than or equal to 500.");
+		alert("Please enter a positive integer for cirlce iterations greater than or equal to 0 and less than or equal to 500.");
 		return;
 	}
 	if (!Number.isInteger(parseFloat(circle_num))) {
@@ -43,25 +43,25 @@ document.getElementById("gen-button").addEventListener("click", () => {
 		return;
 	}
 	if (circle_num > 500) {
-		alert("Please enter a positive integer for cirlce iterations greater than or equal to 1 and less than or equal to 500.");
+		alert("Please enter a positive integer for cirlce iterations greater than or equal to 0 and less than or equal to 500.");
 		return;
 	}
 	var warp_scale = document.getElementById("warp-text-input").value;
 	if (warp_scale <= 0) {
-		alert("Please enter a number for warp scaling greater than 0 and less than or equal to 500.");
+		alert("Please enter a number for warp scaling greater than 0 and less than or equal to 1000.");
 		return;
 	}
-	if (warp_scale > 500) {
-		alert("Please enter a number for warp scaling greater than 0 and less than or equal to 500.");
+	if (warp_scale > 1000) {
+		alert("Please enter a number for warp scaling greater than 0 and less than or equal to 1000.");
 		return;
 	}
 	var warp_tessellate = document.getElementById("tessellate-text-input").value;
 	if (warp_tessellate <= 0) {
-		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 500.");
+		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 1000.");
 		return;
 	}
-	if (warp_tessellate > 500) {
-		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 500.");
+	if (warp_tessellate > 1000) {
+		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 1000.");
 		return;
 	}
 	generateGrid(canvas, context, frequency, amplitude);
