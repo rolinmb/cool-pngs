@@ -1,11 +1,11 @@
 window.onload = () => {
-	const slider_labels = document.getElementsByClassName("slider-label");
-	const sliders = document.getElementsByClassName("slider");
-	for (let i = 0; i < slider_labels.length; i++) {
-		slider_labels[i].innerHTML = sliders[i].value;
-		sliders[i].addEventListener('input', () => {
-			let new_val = document.getElementById(sliders[i].id).value;
-			document.getElementById(slider_labels[i].id).innerHTML = new_val;
+	const input_labels = document.getElementsByClassName("text-input-label");
+	const inputs = document.getElementsByClassName("text-input");
+	for (let i = 0; i < input_labels.length; i++) {
+		input_labels[i].innerHTML = inputs[i].value;
+		inputs[i].addEventListener('input', () => {
+			let new_val = document.getElementById(inputs[i].id).value;
+			document.getElementById(input_labels[i].id).innerHTML = new_val;
 		});
 	}
 }
@@ -15,41 +15,58 @@ document.getElementById("gen-button").addEventListener("click", () => {
 	canvas.width = 1500;
 	canvas.height = 1500;
 	var context = canvas.getContext("2d");
-	var frequency = document.getElementById("frequency-slider").value;
-	var amplitude = document.getElementById("amplitude-slider").value;
-	var circle_num = document.getElementById("circle-slider").value;
-	var warp_scale = document.getElementById("warp-slider").value;
-	var warp_tessellate = document.getElementById("tessellate-slider").value;
-	var circles_first = document.getElementById("circles-first").checked;
-	console.log("circles_first:",circles_first);
-	// Generate the trippy grid pattern
-	for (let x = 0; x < canvas.width; x++) {
-        for (let y = 0; y < canvas.height; y++) {
-			let r = Math.sin(x * frequency) * amplitude;
-			let g = Math.sin(y * frequency) * amplitude;
-			let b = Math.sin((x + y)  * frequency) * amplitude;
-			let color = 'rgb(' + Math.floor(r) + ', ' + Math.floor(g) + ', ' + Math.floor(b) + ')';
-            context.fillStyle = color;
-            context.fillRect(x, y, 1, 1);
-		}
+	var frequency = document.getElementById("frequency-text-input").value;
+	if (frequency <= 0) {
+		alert("Please enter a number for frequency greater than 0 and less than or equal to 500.");
+		return;
 	}
-	// Add fractal circles
-    context.globalCompositeOperation = 'screen';
-	if (circle_num > 0) {
-		for (let i = 0; i < circle_num; i++) {
-			let startX = Math.random() * canvas.width;
-			let startY = Math.random() * canvas.height;
-			let radius = Math.random() * 100 + 50;
-			context.beginPath()
-			context.arc(startX, startY, radius, 0, Math.PI*2, false);
-			let r = (Math.random() * 255);
-			let g = (Math.random() * 255);
-			let b = (Math.random() * 255);
-			let color = 'rgb(' + Math.floor(r) + ', ' + Math.floor(g) + ', ' + Math.floor(b) + ')';
-			context.fillStyle = color;
-			context.fill();
-		}
+	if (frequency > 500) {
+		alert("Please enter a number for frequency greater than 0 and less than or equal to 500.");
+		return;
 	}
+	var amplitude = document.getElementById("amplitude-text-input").value;
+	if (amplitude <= 0) {
+		alert("Please enter an amplitude greater than 0.");
+		return;
+	}
+	if (amplitude > 500) {
+		alert("Please enter a number for amplitude greater than 0 and less than or equal to 500.");
+		return;
+	}
+	var circle_num = document.getElementById("circle-text-input").value;
+	if (circle_num < 0) {
+		alert("Please enter a positive integer for cirlce iterations greater than or equal to 1 and less than or equal to 500.");
+		return;
+	}
+	if (!Number.isInteger(parseFloat(circle_num))) {
+		alert("Please enter a positive integer number for circle generation iterations.");
+		return;
+	}
+	if (circle_num > 500) {
+		alert("Please enter a positive integer for cirlce iterations greater than or equal to 1 and less than or equal to 500.");
+		return;
+	}
+	var warp_scale = document.getElementById("warp-text-input").value;
+	if (warp_scale <= 0) {
+		alert("Please enter a number for warp scaling greater than 0 and less than or equal to 500.");
+		return;
+	}
+	if (warp_scale > 500) {
+		alert("Please enter a number for warp scaling greater than 0 and less than or equal to 500.");
+		return;
+	}
+	var warp_tessellate = document.getElementById("tessellate-text-input").value;
+	if (warp_tessellate <= 0) {
+		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 500.");
+		return;
+	}
+	if (warp_tessellate > 500) {
+		alert("Please enter a number for warp tessellation greater than 0 and less than or equal to 500.");
+		return;
+	}
+	generateGrid(canvas, context, frequency, amplitude);
+	generateCircles(canvas, context, circle_num);
+	
 	// Apply warping
 	var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	var data = imageData.data;
@@ -88,13 +105,13 @@ function generateGrid(canv, ctx, freq, amp) {
 			let b = Math.sin((x + y)  * freq) * amp;
 			let color = 'rgb(' + Math.floor(r) + ', ' + Math.floor(g) + ', ' + Math.floor(b) + ')';
 			ctx.fillStyle = color;
-			ctx.fillRext(x, y, 1, 1);
+			ctx.fillRect(x, y, 1, 1);
 		}
 	}
 }
 
 function generateCircles(canv, ctx, circle_num) {
-	ctx.globalCompositeOperation = "screen";
+	ctx.globalCompositeOperation = 'screen';
 	if (circle_num > 0){
 		for (let i = 0; i < circle_num; i++) {
 			let startX = Math.random() * canv.width;

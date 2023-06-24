@@ -15,6 +15,11 @@
 	/*background-color: #000000;*/
 }
 
+.text-input-label {
+	color: white;
+	font-style: bold;
+}
+
 .input-explanation {
 	margin: auto;
 	width: 200px;
@@ -30,11 +35,6 @@
 
 .input-explanation p {
 	font-size: 0.84em;
-}
-
-.slider-label {
-	color: white;
-	font-style: bold;
 }
 
 #png-preview-area {
