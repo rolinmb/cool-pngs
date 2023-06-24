@@ -7,34 +7,44 @@
   <body>
     <div id="header-area">
 	  <h1><b>| .png generator |</b></h1>
-	  <h2><i>By Rolin Blake</i></h2>
+	  <h2>By Rolin Blake</h2>
 	</div>
     <div id="entry-submit-area">
 	  <div class="input-explanation">
-	    <h3><i>Grid Pattern Frequency</i></h3>
-		<p><i>enter a number in the range range (0, 500]</i></p>
+	    <h3>Grid Pattern Frequency</h3>
+		<p>enter a number in the range range (0, 500]</p>
 	  </div>
-	  <input id="frequency-input" type="number" min="0.0001" placeholder="2" />
+	  <input id="frequency-slider" type="range" class="slider" min="0.000001" max="1000" value="2" step="0.000001" />
+	  <div class="slider-label" id="frequency-view"></div>
 	  <div class="input-explanation">
-	    <h3><i>Grid Pattern Amplitude</i></h3>
-	    <p><i>enter a number in the range range (0, 500])</i></p>
+	    <h3>Grid Pattern Amplitude</h3>
+	    <p>enter a number in the range range (0, 500])</p>
 	  </div>
-	  <input id="amplitude-input" type="number" min="0.0001" placeholder="200" />
+	  <input id="amplitude-slider" type="range" class="slider" min="0.000001" max="1000" value="200" step="0.000001" />
+	  <div class="slider-label" id="amplitude-view"></div>
 	  <div class="input-explanation">
-		<h3><i>Circle Generation Iterations</i></h3>
-	    <p><i>enter an integer in the inclusive range [1, 500]</i></p>
+		<h3>Circle Generation Iterations</h3>
+	    <p>enter an integer in the inclusive range [0, 500]</p>
 	  </div>
-	  <input id="circle-input" type="number" min="0.0001" max="500" placeholder="100" />
+	  <input id="circle-slider" type="range" class="slider" min="0" max="500" value="100" setp="1" />
+	  <div class="slider-label" id="circle-view"></div>
 	  <div class="input-explanation">
-   	    <h3><i>Warp Scaling</i></h3>
-        <p><i>enter a number in the range (0, 500]</i></p>
+	    <h3>Generate Circles before Grid Pattern</h3> 
+		<p>selected = Yes/True; default or unselected = No/False</p>
+	  </div>
+	  <input id="circles-first" type="checkbox" />
+	  <div class="input-explanation">
+   	    <h3>Warp Scaling</h3>
+        <p>enter a number in the range (0, 500]</p>
       </div>
-	  <input id="warp-input" type="number" min="0.0001" max="500" placeholder="10" />
+	  <input id="warp-slider" type="range" class="slider" min="0.000001" max="1000" value="10" step="0.000001" />
+	  <div class="slider-label" id="warp-view"></div>
 	  <div class="input-explanation">
-        <h3><i>Warp Tessellation</i></h3>
-        <p><i>enter a number in the range (0, 500]</i></p>
+        <h3>Warp Tessellation</h3>
+        <p>enter a number in the range (0, 500]</p>
       </div>
-	  <input id="tessellate-input" type="number" min="0.0001" max="500" placeholder="50" />
+	  <input id="tessellate-slider" type="range" class="slider" min="0.000001" max="1000" value="50" step="0.000001" />
+	  <div class="slider-label" id="tessellate-view"></div>
 	  <br /><br />
       <button id="gen-button">Generate .png preview</button>
 	  <br /><br />
